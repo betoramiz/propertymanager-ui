@@ -4,8 +4,41 @@
 @tailwind utilities;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  --mat-expansion-container-background-color: rgba(139, 189, 237, 0.57);
+}
 
 .mdc-text-field--filled {
-  background-color: #f8f8e5 !important;
+  background-color: white !important;
+  border-radius: 20px !important;
+  border: 1px solid #e0e0e0 !important;
+  caret-color: #359fd6 !important;
+  --mdc-filled-text-field-focus-active-indicator-color: #359fd6 !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+  border-bottom-color: white;
+}
+
+.send-button {
+  background-color: #359fd6 !important;
+}
+
+pre.block-code {
+  background: #2b2b2b;
+  padding: 1em;
+  margin: 0.5em auto;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+pre.block-code code {
+  color: #f8f8f2;
+  padding-left: 0;
+  border: none;
+  overflow-x: initial;
+  display: block;
+  font-family: inherit;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }

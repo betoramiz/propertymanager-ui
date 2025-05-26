@@ -2,7 +2,6 @@
 
 export interface AssistantRequest
 {
-  user: string;
   issueDescription: string;
 }
 
@@ -37,6 +36,5 @@ export interface Supplier {
 
 
 export interface IssueDescriptorForm {
-  user: FormControl<string>;
   issue: FormControl<string>;
 }
