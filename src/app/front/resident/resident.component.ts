@@ -63,7 +63,7 @@ export default class AppComponent implements OnInit, OnDestroy {
 
   processIssue() {
 
-    if(this.issueDescriptorForm.controls.issue.value.length ==- 0) {
+    if(this.issueDescriptorForm.controls.issue.value.length === 0) {
       return;
     }
 

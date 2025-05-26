@@ -5,8 +5,8 @@ WORKDIR /app
 COPY ./ .
 
 RUN npm install
-ENV configuration=development
-RUN npm run build -- --configuration ${configuration}
+ARG ENVIRONMENT="development"
+RUN npm run build:${ENVIRONMENT}
 
 FROM nginx:alpine
 
