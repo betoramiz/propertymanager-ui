@@ -5,7 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
 
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Subject, takeUntil, tap} from 'rxjs';
+import { Subject, takeUntil, tap, timer } from 'rxjs';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -14,6 +14,8 @@ import { TicketApiService } from '../ticket-api.service';
 import { AssistantRequest, AssistantResponse, IssueDescriptorForm } from '../../shared/app.model';
 import { Store } from '@ngrx/store';
 import * as ticketActions from '../../store/tickets/actions';
+import { Router } from '@angular/router';
+import { AppDataService } from '../../app-data.service';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +28,8 @@ export default class AppComponent implements OnInit, OnDestroy {
   private formBuilder: FormBuilder = inject(FormBuilder);
   private store: Store<AssistantResponse> = inject(Store);
   private destroy$ = new Subject<void>();
+  private router: Router = inject(Router);
+  private appDataService: AppDataService = inject(AppDataService);
   private initialResponse: AssistantResponse = {
     ticket: {
       tenant: '',
@@ -69,31 +73,33 @@ export default class AppComponent implements OnInit, OnDestroy {
 
     this.isLoadingAnswer.update(() => true);
 
-    const request: AssistantRequest = {
-      issueDescription: this.issueDescriptorForm.controls.issue.value,
-    }
+    this.appDataService.setAppData({ residentId: 1, issue: this.issueDescriptorForm.controls.issue.value })
+    timer(2500).subscribe(() => this.router.navigate(['/ai-chat']));
+    // const request: AssistantRequest = {
+    //   issueDescription: this.issueDescriptorForm.controls.issue.value,
+    // }
 
-    this.service
-      .reportIssue(request)
-      .pipe(
-        takeUntil(this.destroy$),
-        tap((result: AssistantResponse) => {
-          this.response.update(() => result);
-        }),
-        tap((result: AssistantResponse) => {
-          console.log('result', result);
-          this.store.dispatch(ticketActions.saveTicket({ payload: result }));
-        }),
-      )
-      .subscribe({
-        complete: () => this.isLoadingAnswer.update(() => false),
-        error: () => this.isLoadingAnswer.update(() => false)
-      });
+    // this.service
+    //   .reportIssue(request)
+    //   .pipe(
+    //     takeUntil(this.destroy$),
+    //     tap((result: AssistantResponse) => {
+    //       this.response.update(() => result);
+    //     }),
+    //     tap((result: AssistantResponse) => {
+    //       console.log('result', result);
+    //       this.store.dispatch(ticketActions.saveTicket({ payload: result }));
+    //     }),
+    //   )
+    //   .subscribe({
+    //     complete: () => this.isLoadingAnswer.update(() => false),
+    //     error: () => this.isLoadingAnswer.update(() => false)
+    //   });
   }
 
   private createForm() {
     return this.formBuilder.group<IssueDescriptorForm>({
-      issue: this.formBuilder.nonNullable.control(''),
+      issue: this.formBuilder.nonNullable.control('The AC is not working on Auto mode'),
     });
   }
 }

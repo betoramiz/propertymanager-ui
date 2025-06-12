@@ -1,0 +1,339 @@
+<div class="chat-container">
+  <div class="log-container">
+    <div class="chat-header">
+    <h3>Events Log</h3>
+  </div>
+    <div class="chat-messages">
+      @if (typingLog()) {
+        <div class="typing-indicator">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      }
+
+      <div class="hidden" id="log-1">
+        <div class="message received">
+          <div class="message-bubble width-90">
+            <div class="message-container">
+              <label>Category:</label>
+              <p>HVAC</p>
+            </div>
+            <div class="message-container">
+              <label>Issue:</label>
+              <p>The AC is not working properly.</p>
+            </div>
+            <div class="message-container">
+              <label>Resident:</label>
+              <p>Jaime Martinez.</p>
+            </div>
+            <div class="message-container">
+              <label>Address:</label>
+              <p>130 Prairi Doctor Orlando FL.</p>
+            </div>
+            <div class="message-container">
+              <label>Phone:</label>
+              <p>123-456-7890</p>
+            </div>
+            <div class="message-container">
+              <label>Next step:</label>
+              <p>Get a vendor to fix issue</p>
+            </div>
+          </div>
+        </div>
+        <div class="message-time">Jun-11-25 - 10:30 AM</div>
+      </div>
+
+      <div class="hidden" id="log-2">
+        <div class="message sent">
+          <div class="message-bubble width-90">
+            Thank you for reporting your issue. Jaime, we'll dispatch an HVAC technician to inspect and repair the AC's problem.
+          </div>
+        </div>
+        <div class="message-time">10:32 AM</div>
+      </div>
+
+      <div class="hidden" id="log-3">
+        <div class="message received">
+          <div class="message-bubble width-90">
+            <div class="message-container">
+              <label>Task:</label>
+              <p>Select and contact Vendor</p>
+            </div>
+            <div class="message-container">
+              <label>Response</label>
+              <p>Hi Andy, this is Aimee from Mila Realty. We have an HVAC AC issue at
+                13 Prairie Or, Orlando (tenant: Jaime Martinez 407-334-0908. AC not cooling in Auto mode. Can you take this job
+                and contact the tenant 'rectly to s edule a time that works for both Of you? Please reply to confirm you are available.</p>
+            </div>
+            <div class="message-container">
+              <label>Next step:</label>
+              <p>Queue waiting for Vendor to Reply</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden" id="log-4">
+        <div class="message received">
+          <div class="message-bubble width-90">
+            <div class="message-container">
+              <label>Task:</label>
+              <p>Select and contact Vendor</p>
+            </div>
+            <div class="message-container">
+              <label>Response</label>
+              <p>Hi Aimee. Yes, I am available and I will take the job. i will coordinate with Jaime ASAP.</p>
+            </div>
+            <div class="message-container">
+              <label>Next step:</label>
+              <p>Queue waiting for Vendor to Reply</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden" id="log-5">
+        <div class="message received">
+          <div class="message-bubble width-90">
+            <div class="message-container">
+              <label>Task:</label>
+              <p>Status Update</p>
+            </div>
+            <div class="message-container">
+              <label>Response</label>
+              <p>HI Jaime. Just a quick update — Euro from Home A/C Will be reaching out shortly to coordinate a time that works best for both of you.</p>
+            </div>
+            <div class="message-container">
+              <label>Next step:</label>
+              <p>Queue waiting for Vendor to Replay</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden" id="log-6">
+        <div class="message received">
+          <div class="message-bubble width-90">
+            <div class="message-container">
+              <label>Task:</label>
+              <p>Status Update</p>
+            </div>
+            <div class="message-container">
+              <label>Response</label>
+              <p>Hi Aimee. Quick update, I called Jaime and I am going to swing by today around 4pm.</p>
+            </div>
+            <div class="message-container">
+              <label>Next step:</label>
+              <p>Queue waiting for Vendor to Replay</p>
+            </div>
+          </div>
+        </div>
+        <div class="message-time">Jun-11-25 - 10:30 AM</div>
+      </div>
+
+      <div class="hidden" id="log-7">
+        <div class="message received">
+          <div class="message-bubble width-90">
+            <div class="message-container">
+              <label>Task:</label>
+              <p>Status Update</p>
+            </div>
+            <div class="message-container">
+              <label>Response</label>
+              <p>Hi Aimee. Uint fixed. it is cooling and everything is working fine. This time it was a capacitor. Total fix cost is $250.00 My office will send invoice soon.</p>
+            </div>
+            <div class="message-container">
+              <label>Next step:</label>
+              <p>Queue waiting for Vendor to Replay</p>
+            </div>
+          </div>
+        </div>
+        <div class="message-time">Jun-11-25 - 10:30 AM</div>
+      </div>
+
+      <div class="hidden" id="log-8">
+        <div class="message received">
+          <div class="message-bubble width-90">
+            <div class="message-container">
+              <label>Task:</label>
+              <p>Status Update To Tenant</p>
+            </div>
+            <div class="message-container">
+              <label>Response</label>
+              <p>Hi Jaime. looks like Andy has fixed the issue. ACn you confirm so that we can close the ticket?</p>
+            </div>
+            <div class="message-container">
+              <label>Next step:</label>
+              <p>Queue waiting for Vendor to Replay</p>
+            </div>
+          </div>
+        </div>
+        <div class="message-time">Jun-11-25 - 10:30 AM</div>
+      </div>
+
+      <div class="hidden" id="log-9">
+        <div class="message received">
+          <div class="message-bubble width-90">
+            <div class="message-container">
+              <label>Task:</label>
+              <p>Confirm close ticket</p>
+            </div>
+            <div class="message-container">
+              <label>Response</label>
+              <p>Yes, we can close the ticket. The AC is working fine now.</p>
+            </div>
+            <div class="message-container">
+              <label>Next step:</label>
+              <p>Queue waiting for Vendor to Replay</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!--Vendor chat -->
+  <div class="iphone">
+    <div class="iphone-screen">
+      <div class="notch"></div>
+      <div class="status-bar">
+        <div class="time">9:41</div>
+        <div class="battery-status">
+          <span>100%</span>
+          <div class="battery-icon">
+            <div class="battery-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor principal con overflow-y: auto -->
+      <div class="content-container">
+        <div class="section-header">
+          <h1 class="section-title">Vendor - chat</h1>
+        </div>
+        <div class="content">
+          <div class="chat-messages">
+
+            @if (typingVendor()) {
+              <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+              </div>
+            }
+            <div class="hidden" id="vendor-1">
+              <div class="message received">
+                <div class="message-bubble width-90">
+                  Hi Andy. this is Aimee from Property Manager AI. We have an AC issue at 13 Prairie Dr, Orlando (tenant Jaime Martinez 407-334-0908). AC is not working.
+                  Can you take this job and contact the tenant directly to schedule a time that works for both of you?
+                  Please reply to confirm you are available
+                </div>
+              </div>
+              <div class="message-time">Jun-11-25 - 10:30 AM</div>
+            </div>
+
+            <div class="hidden" id="vendor-2">
+              <div class="message sent">
+                <div class="message-bubble width-90">
+                  Hi Aimee. Yes, I am available and I will take the job. i will coordinate with Jaime ASAP.
+                </div>
+              </div>
+              <div class="message-time">Jun-11-25 - 10:30 AM</div>
+            </div>
+
+            <div class="hidden" id="vendor-3">
+              <div class="message sent">
+                <div class="message-bubble width-90">
+                  Hi Aimee. Quick update, I called Jaime and I am going to swing by today around 4pm.
+                </div>
+              </div>
+              <div class="message-time">Jun-11-25 - 10:30 AM</div>
+            </div>
+
+            <div class="hidden" id="vendor-4">
+              <div class="message sent">
+                <div class="message-bubble width-90">
+                  Hi Aimee. Uint fixed. it is cooling and everything is working fine. This time it was a capacitor. Total fix cost is $250.00 My office will send invoice soon.
+                </div>
+              </div>
+              <div class="message-time">Jun-11-25 - 10:30 AM</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--  Resident Chat -->
+  <div class="iphone">
+    <div class="iphone-screen">
+      <div class="notch"></div>
+      <div class="status-bar">
+        <div class="time">9:41</div>
+        <div class="battery-status">
+          <span>100%</span>
+          <div class="battery-icon">
+            <div class="battery-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor principal con overflow-y: auto -->
+      <div class="content-container">
+        <div class="section-header">
+          <h1 class="section-title">Tenant - chat</h1>
+        </div>
+        <div class="content">
+          <div class="chat-messages">
+
+            @if (typingTenant()) {
+              <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+              </div>
+            }
+            <div class="hidden" id="tenant-1">
+              <div class="message received">
+                <div class="message-bubble width-90">
+                  Thank you for reporting your issue. Jaime we'll dispatch an HVAC technician to inspect and repair the AC's problem.
+                </div>
+              </div>
+              <div class="message-time">10:32 AM</div>
+            </div>
+
+            <div class="hidden" id="tenant-2">
+              <div class="message received">
+                <div class="message-bubble width-90">
+                  HI Jaime. Just a quick update — Euro from Home A/C Will be reaching out shortly to coordinate a time that works best for both of you.
+                </div>
+              </div>
+              <div class="message-time">10:32 AM</div>
+            </div>
+
+            <div class="hidden" id="tenant-3">
+              <div class="message received">
+                <div class="message-bubble width-90">
+                  Hi Jaime. looks like Andy has fixed the issue. ACn you confirm so that we can close the ticket?
+                </div>
+              </div>
+              <div class="message-time">10:32 AM</div>
+            </div>
+
+            <div class="hidden" id="tenant-4">
+              <div class="message sent">
+                <div class="message-bubble width-90">
+                  Yes, we can close the ticket. The AC is working fine now.
+                </div>
+              </div>
+              <div class="message-time">10:32 AM</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
