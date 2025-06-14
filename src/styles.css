@@ -30,6 +30,12 @@ body {
   --mat-icon-color: white;
 }
 
+
+.mat-icon-green {
+  --mat-icon-color: #73B680;
+}
+
+
 .mat-icon-primary {
   --mat-icon-color: var(--primary-color);
 }
@@ -109,42 +115,25 @@ body {
   }
 }
 
-/*.mdc-text-field--filled {*/
-/*  background-color: white !important;*/
-/*  border-radius: 20px !important;*/
-/*  border: 1px solid #e0e0e0 !important;*/
-/*  caret-color: #359fd6 !important;*/
-/*  --mdc-filled-text-field-focus-active-indicator-color: #359fd6 !important;*/
-/*}*/
+/*
+ //
+ //
+  Chat styles
+ //
+ //
+*/
 
-/*.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {*/
-/*  border-bottom-color: white;*/
-/*}*/
+textarea {
+  border: 1px solid #73B680;
+}
 
-/*.send-button {*/
-/*  background-color: #359fd6 !important;*/
-/*}*/
-
-/*pre.block-code {*/
-/*  background: #2b2b2b;*/
-/*  padding: 1em;*/
-/*  margin: 0.5em auto;*/
-/*  overflow: auto;*/
-/*  border-radius: 0.3em;*/
-/*}*/
-
-/*pre.block-code code {*/
-/*  color: #f8f8f2;*/
-/*  padding-left: 0;*/
-/*  border: none;*/
-/*  overflow-x: initial;*/
-/*  display: block;*/
-/*  font-family: inherit;*/
-/*  overflow-wrap: break-word;*/
-/*  white-space: pre-wrap;*/
-/*}*/
+textarea:focus {
+  outline: none;
+  border-color: #73B680 !important;
+}
 
 .chat-container {
+  margin-top: 25px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
@@ -162,7 +151,7 @@ body {
 //
 */
 .log-container {
-  margin-top: 25px;
+  /*margin-top: 25px;*/
   margin-left: 25px;
   margin-bottom: 25px;
   width: 100%;
@@ -197,12 +186,12 @@ body {
 .chat-messages {
   flex: 1;
   padding: 20px;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
   background: #f8f9fa;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /*max-height: 800px;*/
+  height: 100vh;
 }
 
 .message {
@@ -281,6 +270,11 @@ body {
   }
 }
 
+/*.typing {*/
+/*  position: absolute;*/
+/*  bottom: 20px;*/
+/*  z-index: 9;*/
+/*}*/
 
 .typing-indicator {
   display: flex;
@@ -322,7 +316,7 @@ body {
   //
 //
 //
-/* Contenedor principal del iPhone */
+*/
 .iphone {
   margin: 0 auto;
   width: 375px;
@@ -383,8 +377,10 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   z-index: 5;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .section-title {
@@ -444,77 +440,6 @@ body {
   margin-bottom: 12px;
 }
 
-/* Lista de elementos */
-/*.list-group {*/
-/*  background: #fff;*/
-/*  border-radius: 12px;*/
-/*  margin-bottom: 20px;*/
-/*  overflow: hidden;*/
-/*}*/
-
-/*.list-item {*/
-/*  padding: 16px 20px;*/
-/*  border-bottom: 1px solid #f2f2f7;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  justify-content: space-between;*/
-/*  transition: background-color 0.2s ease;*/
-/*}*/
-
-/*.list-item:last-child {*/
-/*  border-bottom: none;*/
-/*}*/
-
-/*.list-item:active {*/
-/*  background-color: #f2f2f7;*/
-/*}*/
-
-/*.list-item-content {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
-
-/*.list-icon {*/
-/*  width: 32px;*/
-/*  height: 32px;*/
-/*  border-radius: 8px;*/
-/*  background: linear-gradient(135deg, #667eea, #764ba2);*/
-/*  margin-right: 16px;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  color: white;*/
-/*  font-weight: bold;*/
-/*}*/
-
-/*.list-text {*/
-/*  font-size: 16px;*/
-/*  color: #000;*/
-/*}*/
-
-/*.chevron {*/
-/*  color: #c7c7cc;*/
-/*  font-size: 16px;*/
-/*}*/
-
-/* Button estilo iOS */
-/*.ios-button {*/
-/*  background: #007aff;*/
-/*  color: white;*/
-/*  border: none;*/
-/*  border-radius: 12px;*/
-/*  padding: 16px 24px;*/
-/*  font-size: 16px;*/
-/*  font-weight: 600;*/
-/*  width: 100%;*/
-/*  margin-bottom: 12px;*/
-/*  transition: background-color 0.2s ease;*/
-/*}*/
-
-/*.ios-button:active {*/
-/*  background: #0056b3;*/
-/*}*/
-
 /* Scrollbar personalizado estilo iOS */
 .content-container::-webkit-scrollbar {
   width: 4px;
@@ -560,144 +485,3 @@ body {
   background: #34c759;
   border-radius: 1px;
 }
-
-/* Añadir más contenido para demostrar scroll */
-/*.demo-content {*/
-/*  background: linear-gradient(135deg, #667eea, #764ba2);*/
-/*  color: white;*/
-/*  padding: 30px 20px;*/
-/*  margin-bottom: 16px;*/
-/*  border-radius: 12px;*/
-/*  text-align: center;*/
-/*}*/
-
-/*.demo-content h3 {*/
-/*  font-size: 24px;*/
-/*  margin-bottom: 10px;*/
-/*}*/
-
-
-
-
-
-
-
-
-
-
-
-
-/*.iphone-frame {*/
-/*  background: #1a1a1a;*/
-/*  border-radius: 35px;*/
-/*  padding: 8px;*/
-/*  !*box-shadow:*!*/
-/*  !*  0 20px 60px rgba(0, 0, 0, 0.4),*!*/
-/*  !*  0 8px 25px rgba(0, 0, 0, 0.3),*!*/
-/*  !*  inset 0 0 0 2px rgba(255, 255, 255, 0.1);*!*/
-/*  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);*/
-/*  position: relative;*/
-/*  !*aspect-ratio: 9/19.5;*!*/
-/*  margin: 25px auto;*/
-/*  width: 75%;*/
-/*  height: 720px;*/
-/*  border: 1px solid #e0e0e0;*/
-/*}*/
-
-/*!*.iphone-screen {*!*/
-/*!*  background: #ffffff;*!*/
-/*!*  border-radius: 28px;*!*/
-/*!*  position: relative;*!*/
-/*!*  overflow: hidden;*!*/
-/*!*  border: 1px solid #e0e0e0;*!*/
-/*!*}*!*/
-
-/*.iphone-screen {*/
-/*  !*background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);*!*/
-/*  border-radius: 28px;*/
-/*  max-height: 700px;*/
-/*  position: relative;*/
-/*  overflow: hidden;*/
-/*  border: 1px solid #333;*/
-/*}*/
-
-
-/*.notch {*/
-/*  position: absolute;*/
-/*  top: 8px;*/
-/*  left: 50%;*/
-/*  transform: translateX(-50%);*/
-/*  width: 140px;*/
-/*  height: 28px;*/
-/*  background: #000;*/
-/*  border-radius: 14px;*/
-/*  z-index: 10;*/
-/*  border: 1px solid #333;*/
-/*}*/
-
-/*.status-bar {*/
-/*  position: absolute;*/
-/*  top: 12px;*/
-/*  left: 0;*/
-/*  right: 0;*/
-/*  height: 20px;*/
-/*  display: flex;*/
-/*  justify-content: space-between;*/
-/*  align-items: center;*/
-/*  padding: 0 20px;*/
-/*  color: white;*/
-/*  font-size: 12px;*/
-/*  font-weight: 600;*/
-/*  z-index: 5;*/
-/*}*/
-
-/*.time {*/
-/*  margin-left: 10px;*/
-/*}*/
-
-/*.battery-info {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  gap: 4px;*/
-/*  margin-right: 10px;*/
-/*}*/
-
-/*.app-content {*/
-/*  background: white;*/
-/*  margin-top: 50px;*/
-/*  !*padding: 20px;*!*/
-/*  !*height: calc(100% - 100px);*!*/
-/*  overflow-y: auto;*/
-/*}*/
-/*.app-header {*/
-/*  text-align: center;*/
-/*  margin-bottom: 30px;*/
-/*}*/
-
-/*.app-title {*/
-/*  color: #008ed2;*/
-/*  font-size: 24px;*/
-/*  font-weight: bold;*/
-/*  margin-bottom: 8px;*/
-/*}*/
-
-/*.app-subtitle {*/
-/*  color: #999;*/
-/*  font-size: 14px;*/
-/*}*/
-
-/*.home-indicator {*/
-/*  position: absolute;*/
-/*  bottom: 8px;*/
-/*  left: 50%;*/
-/*  transform: translateX(-50%);*/
-/*  width: 134px;*/
-/*  height: 5px;*/
-/*  background: rgba(255, 255, 255, 0.3);*/
-/*  border-radius: 3px;*/
-/*}*/
-
-
-/*.message-pack .hidden {*/
-/*  display: block;*/
-/*}*/

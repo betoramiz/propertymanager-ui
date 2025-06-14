@@ -1,17 +1,43 @@
-import { Component, ElementRef, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, ElementRef, inject, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
 import { AppDataService } from '../app-data.service';
 import { concatMap, from, tap, timer } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormField, MatInput } from '@angular/material/input';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatButton } from '@angular/material/button';
+import { MatRipple } from '@angular/material/core';
+import { Example } from './models/example.model';
+import { DemoService } from './demo.service';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { Category } from './models/category.example';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgOptimizedImage } from '@angular/common';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-demo',
-  imports: [],
+  imports: [
+    MatIconModule,
+    MatInput,
+    MatFormField,
+    MatPaginator,
+    MatButton,
+    MatRipple,
+    ReactiveFormsModule,
+    NgOptimizedImage,
+    MatProgressSpinner
+  ],
   templateUrl: './demo.component.html',
   styleUrl: './demo.component.css'
 })
 export default class DemoComponent implements OnInit {
 
   private appDataService: AppDataService = inject(AppDataService);
-  private elementRef: ElementRef<HTMLElement> = inject(ElementRef);
+  private demoService: DemoService = inject(DemoService);
+  private destroyRef$: DestroyRef = inject(DestroyRef);
+  examples: Example[] = [];
+  categories: Category[] = [];
+  issueControl: FormControl = new FormControl<string>('', Validators.required);
 
   items = [
     { id: 'log-1', section: 'log' },
@@ -35,39 +61,81 @@ export default class DemoComponent implements OnInit {
   typingLog = signal<boolean>(true);
   typingVendor = signal<boolean>(false);
   typingTenant = signal<boolean>(false);
+  blockButtons = signal<boolean>(false);
 
   ngOnInit(): void {
-    console.log('Data', this.appDataService.getAppData());
+    this.demoService.getCategories().pipe(
+      takeUntilDestroyed(this.destroyRef$),
+      tap(categories => this.categories = categories)
+    ).subscribe();
 
-    from(this.items)
+    this.demoService.getIssues()
       .pipe(
-        concatMap(item =>
-          timer(4000)
-          .pipe(
-            tap(() => {
-              if(item.section === 'log') {
-                this.typingLog.update(() => true);
-                this.typingVendor.update(() => false);
-                this.typingTenant.update(() => false);
-              } else if(item.section === 'tenant') {
-                this.typingLog.update(() => false);
-                this.typingVendor.update(() => false);
-                this.typingTenant.update(() => true);
-              } else if(item.section === 'tenant') {
-                this.typingLog.update(() => false);
-                this.typingVendor.update(() => true);
-                this.typingTenant.update(() => false);
-              }
-            }),
-            tap(() => document.getElementById(item.id.toString())?.classList.remove('hidden'))
-          )
+        takeUntilDestroyed(this.destroyRef$),
+        tap((result: Example[]) => {
+          this.examples = result;
+          if(result) {
+            this.issueControl.setValue(result[0].issue);
+          }
+        })
       )
-    ).subscribe({
-      complete: () => {
-        this.typingLog.update(() => false);
-        this.typingVendor.update(() => false);
-        this.typingTenant.update(() => false);
-      }
-    });
+      .subscribe();
+
+    const collection = document.getElementsByClassName('hidden');
+    for (let collectionElement of collection) {
+      collectionElement.classList.remove('hidden');
+    }
+
+    // from(this.items)
+    //   .pipe(
+    //     concatMap(item =>
+    //       timer(2000)
+    //       .pipe(
+    //         tap(() => {
+    //           const tenantElement = document.getElementsByClassName('event-typing');
+    //
+    //           if(item.section === 'log') {
+    //             this.typingLog.update(() => true);
+    //             this.typingVendor.update(() => false);
+    //             this.typingTenant.update(() => false);
+    //           } else if(item.section === 'tenant') {
+    //             this.typingLog.update(() => false);
+    //             this.typingVendor.update(() => false);
+    //             this.typingTenant.update(() => true);
+    //           } else if(item.section === 'vendor') {
+    //             this.typingLog.update(() => false);
+    //             this.typingVendor.update(() => true);
+    //             this.typingTenant.update(() => false);
+    //           }
+    //         }),
+    //         tap(() => {
+    //           const element = document.getElementById(item.id.toString());
+    //           element?.classList.remove('hidden');
+    //           element?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    //           // this.scrollToBottom();
+    //         })
+    //       )
+    //   )
+    // ).subscribe({
+    //   complete: () => {
+    //     this.typingLog.update(() => false);
+    //     this.typingVendor.update(() => false);
+    //     this.typingTenant.update(() => false);
+    //   }
+    // });
+  }
+
+  handlePageEvent(event$: PageEvent): void {
+    const index = event$.pageIndex;
+    this.issueControl.setValue(this.examples[index].issue);
+  }
+
+  processIssue(): void {
+    if(this.issueControl.value.length === 0) {
+      return;
+    }
+
+    this.blockButtons.set(true);
+
   }
 }

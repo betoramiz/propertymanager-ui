@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class TicketApiService {
 
-  private baseUrl = environment.apiUrl;
+  private baseUrl = environment.apiDemoUrl;
   // private baseUrl = 'https://localhost:7290/api/issue'
   // private baseUrl = 'https://clownfish-app-2ji3n.ondigitalocean.app/api/issue'
   private http: HttpClient = inject(HttpClient);

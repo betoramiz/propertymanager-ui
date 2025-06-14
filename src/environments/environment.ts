@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://ai.pitaya.lat/api/issue'
+  apiDemoUrl: 'http://ai.pitaya.lat/api/issue',
+  apiUrl: 'http://ai.pitaya.lat/api',
 };
