@@ -20,22 +20,23 @@
           <div>
             <img width="120px" fetchpriority="high" alt="" src="https://www.buildium.com/wp-content/uploads/2023/08/buildium-logo-1.svg">
           </div>
+          <div>Diane Harris</div>
           <div>
-            <mat-icon class="mat-icon-green">person</mat-icon>
+            <img ngSrc="./assets/img/person.jpeg" alt="" height="30" width="40" class="rounded-full">
           </div>
         </div>
         <div class="content">
           <div class="chat-messages">
             <div class="h-32">
               <textarea [formControl]="issueControl" class="w-full p-3 resize-none rounded-2xl" rows="4"></textarea>
-              <button class="relative bottom-20 float-right left-3 bg-[#73B680] rounded-full w-9" mat-ripple (click)="processIssue()" [disabled]="blockButtons()">
+              <button [ngClass]="{'disabled' : blockButtons()}"  class="relative bottom-20 float-right left-3  rounded-full w-9 issue-button" mat-ripple (click)="processIssue()" [disabled]="blockButtons()">
                 <mat-icon class="mat-icon-white mt-1">add</mat-icon>
               </button>
             </div>
 
             <div class="inline">
               @if (blockButtons()){
-              <mat-spinner [diameter]="30" class="float-left"></mat-spinner>
+                <mat-spinner [diameter]="30" class="float-left"></mat-spinner>
               }
               <mat-paginator
                 class="float-end"
@@ -48,14 +49,11 @@
               </mat-paginator>
             </div>
 
-            <div class="hidden" id="tenant-1">
-              <div class="message received">
-                <div class="message-bubble width-90">
-                  Thank you for reporting your issue. Jaime we'll dispatch an HVAC technician to inspect and repair the AC's problem.
-                </div>
-              </div>
-              <div class="message-time">10:32 AM</div>
-            </div>
+            <div class="hidden" id="tenant-1"></div>
+            <chat-bubble
+              message="Thank you for reporting your issue. Jaime we'll dispatch an HVAC technician to inspect and repair the AC's problem."
+              time="10:32 AM"
+            ></chat-bubble>
 
             <div class="hidden" id="tenant-2">
               <div class="message received">
@@ -117,8 +115,9 @@
           <div>
             <img width="60" height="60" fetchpriority="high" alt="" ngSrc="ai-propertymanager.png">
           </div>
+          <div>Aimee Jones</div>
           <div>
-            <mat-icon>person</mat-icon>
+            <img ngSrc="./assets/img/AmieeJones.png" width="40" alt="" height="49">
           </div>
         </div>
         <div class="content">

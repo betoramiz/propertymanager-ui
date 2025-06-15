@@ -1,6 +1,6 @@
 import { Component, DestroyRef, ElementRef, inject, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
 import { AppDataService } from '../app-data.service';
-import { concatMap, from, tap, timer } from 'rxjs';
+import { concatMap, delay, from, tap, timer } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatInput } from '@angular/material/input';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -11,8 +11,9 @@ import { DemoService } from './demo.service';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Category } from './models/category.example';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { ChatBubbleComponent } from '../shared/components/chat-bubble/chat-bubble.component';
 
 @Component({
   selector: 'app-demo',
@@ -25,7 +26,9 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
     MatRipple,
     ReactiveFormsModule,
     NgOptimizedImage,
-    MatProgressSpinner
+    MatProgressSpinner,
+    ChatBubbleComponent,
+    NgClass
   ],
   templateUrl: './demo.component.html',
   styleUrl: './demo.component.css'
@@ -37,7 +40,7 @@ export default class DemoComponent implements OnInit {
   private destroyRef$: DestroyRef = inject(DestroyRef);
   examples: Example[] = [];
   categories: Category[] = [];
-  issueControl: FormControl = new FormControl<string>('', Validators.required);
+  issueControl: FormControl = new FormControl<string>('');
 
   items = [
     { id: 'log-1', section: 'log' },
@@ -64,27 +67,27 @@ export default class DemoComponent implements OnInit {
   blockButtons = signal<boolean>(false);
 
   ngOnInit(): void {
-    this.demoService.getCategories().pipe(
-      takeUntilDestroyed(this.destroyRef$),
-      tap(categories => this.categories = categories)
-    ).subscribe();
+    // this.demoService.getCategories().pipe(
+    //   takeUntilDestroyed(this.destroyRef$),
+    //   tap(categories => this.categories = categories)
+    // ).subscribe();
+    //
+    // this.demoService.getIssues()
+    //   .pipe(
+    //     takeUntilDestroyed(this.destroyRef$),
+    //     tap((result: Example[]) => {
+    //       this.examples = result;
+    //       if(result) {
+    //         this.issueControl.setValue(result[0].issue);
+    //       }
+    //     })
+    //   )
+    //   .subscribe();
 
-    this.demoService.getIssues()
-      .pipe(
-        takeUntilDestroyed(this.destroyRef$),
-        tap((result: Example[]) => {
-          this.examples = result;
-          if(result) {
-            this.issueControl.setValue(result[0].issue);
-          }
-        })
-      )
-      .subscribe();
-
-    const collection = document.getElementsByClassName('hidden');
-    for (let collectionElement of collection) {
-      collectionElement.classList.remove('hidden');
-    }
+    // const collection = document.getElementsByClassName('hidden');
+    // for (let collectionElement of collection) {
+    //   collectionElement.classList.remove('hidden');
+    // }
 
     // from(this.items)
     //   .pipe(
@@ -131,11 +134,18 @@ export default class DemoComponent implements OnInit {
   }
 
   processIssue(): void {
+    console.log(this.issueControl.value.length);
     if(this.issueControl.value.length === 0) {
       return;
     }
 
     this.blockButtons.set(true);
+
+    timer(2000)
+      .pipe(
+        tap(() => this.blockButtons.set(false))
+      ).subscribe();
+
 
   }
 }
