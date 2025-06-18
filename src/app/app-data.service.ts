@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-export interface AppData {
-  residentId: number;
-  issue: string;
-}
+import { MessageResponse } from './demo/models/MessageResponse';
+import { MessageLog } from './demo/models/messageLog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppDataService {
 
+  // private logEvents: MessageResponse<>
+  private messagesLog: MessageLog[] = [];
+
   constructor() { }
 
-  private appDataSubject = new BehaviorSubject<AppData | null>(null);
-  appData$: Observable<AppData | null> = this.appDataSubject.asObservable();
+  private appDataSubject = new BehaviorSubject<MessageResponse<any> | null>(null);
+  appData$: Observable<MessageResponse<any> | null> = this.appDataSubject.asObservable();
 
-  setAppData(data: AppData): void {
+  setAppData(data: MessageResponse<any>): void {
     this.appDataSubject.next(data);
   }
 
-  getAppData(): AppData | null {
+  getAppData(): MessageResponse<any> | null {
     return this.appDataSubject.value;
   }
 }

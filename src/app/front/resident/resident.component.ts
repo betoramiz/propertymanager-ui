@@ -73,8 +73,8 @@ export default class AppComponent implements OnInit, OnDestroy {
 
     this.isLoadingAnswer.update(() => true);
 
-    this.appDataService.setAppData({ residentId: 1, issue: this.issueDescriptorForm.controls.issue.value })
-    timer(2500).subscribe(() => this.router.navigate(['/ai-chat']));
+    // this.appDataService.setAppData({  issue: this.issueDescriptorForm.controls.issue.value })
+    // timer(2500).subscribe(() => this.router.navigate(['/ai-chat']));
     // const request: AssistantRequest = {
     //   issueDescription: this.issueDescriptorForm.controls.issue.value,
     // }

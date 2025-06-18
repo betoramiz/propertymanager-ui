@@ -1,12 +1,24 @@
-import { Component, input, InputSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, InputSignal, ViewEncapsulation } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'chat-bubble',
-  imports: [],
-  templateUrl: './chat-bubble.component.html',
+  imports: [
+    NgClass
+  ],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div [ngClass]="isIncoming() ? 'sent' : 'received'" class="message">
+      <div class="message-bubble width-90">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    <div class="message-time">{{ time() }}</div>
+  `,
   styleUrl: './chat-bubble.component.css'
 })
 export class ChatBubbleComponent {
-  message: InputSignal<string> = input("...");
+  isIncoming: InputSignal<boolean> = input(false);
   time: InputSignal<string> = input("00:00:00");
 }
